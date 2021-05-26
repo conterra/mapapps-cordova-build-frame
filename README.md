@@ -85,6 +85,22 @@ Execute **Export for Native App** on an app in map.apps Manager to download it a
 
 Extract the ZIP file into the `www` folder of the Cordova project, overwriting any existing files.
 
+### Remove pre-compressed files
+
+A native exported app contains pre-compressed `.gz` files.
+Cordova does not need them and even lead to an unsuccessful build.
+You can safely delete all these files in the `www` directory:
+
+On a Unix-based system:
+```
+$ find www/ -name \*.gz -exec rm {} \;
+```
+
+On a Windows system:
+```
+$ for /R www/ %A in (*.gz) do ( del /f /q "%A" )
+```
+
 ## Execute Cordova build
 
 Run the build:
